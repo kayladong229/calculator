@@ -11,7 +11,7 @@ const add = (num1, num2) => num1 + num2;
 const subtract = (num1, num2) => num1 - num2;
 const multiply = (num1, num2) => num1 * num2;
 const divide = (num1, num2) => {
-  return (num2 === 0) ? answer.innerText = "ERROR" : num1 / num2;
+  return num2 === 0 ? (answer.innerText = "ERROR") : num1 / num2;
 };
 
 function operate(num1, num2, math) {
@@ -59,7 +59,7 @@ function displayAnswer() {
       }
     }
   } else {
-    answer.innerText = 'ERROR';
+    answer.innerText = "ERROR";
   }
 }
 

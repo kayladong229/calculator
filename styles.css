@@ -81,7 +81,6 @@ body {
 }
 
 .operator-button, .equal-button {
-    background-color: beige;;
     height: 55px;
     width: 100px;
     padding: 0 15px;
@@ -89,4 +88,13 @@ body {
     border-radius: 100%;
     margin: 8px 3px;
     border: 1px solid gray;
+}
+
+.operator-button {
+    background-color: beige;
+}
+
+.equal-button {
+    background-color: navy;
+    color: white;
 }

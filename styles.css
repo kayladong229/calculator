@@ -13,14 +13,26 @@ body {
 
 .screen {
     display: flex;
-    justify-content: flex-end;
-    align-items: flex-end;
+    flex-direction: column;
+    justify-content: space-between;
     height: 150px;
     width: 375px;
     margin: 10px;
     border: 1px solid black;
     font-size: 48px;
     background-color: white;
+    padding: 2px;
+}
+
+.calculation-zone {
+    margin-left: 5px;
+}
+
+.answer {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    margin-right: 5px;
 }
 
 .clear-button-container {
@@ -30,11 +42,12 @@ body {
 
 #clear-button {
     font-size: 48px;
-    width: 375px;
+    width: 379px;
     height: 75px;
     text-align: center;
     padding: 5px 0;
     border-radius: 3px;
+    background-color: beige;
 }
 
 .button-container {
@@ -67,7 +80,7 @@ body {
     margin-right: 20px;
 }
 
-.operator-button {
+.operator-button, .equal-button {
     background-color: beige;;
     height: 55px;
     width: 100px;

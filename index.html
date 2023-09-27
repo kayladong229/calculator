@@ -8,7 +8,14 @@
   </head>
   <body>
     <div id="calculator">
-      <div class="screen">1234</div>
+      <div class="screen">
+        <div class="calculation-zone">
+            <span class="left-operand"></span>
+            <span class="operator"></span>
+            <span class="right-operand"></span>
+        </div>
+        <div class="answer"></div>
+      </div>
       <div class="clear-button-container">
         <button id="clear-button">CLEAR</button>
       </div>
@@ -30,7 +37,7 @@
           <button class="operator-button" id="*">x</button>
           <button class="operator-button" id="-">-</button>
           <button class="operator-button" id="+">+</button>
-          <button class="operator-button" id="=">=</button>
+          <button class="equal-button" id="=">=</button>
         </div>
       </div>
     </div>

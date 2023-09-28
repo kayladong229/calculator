@@ -6,6 +6,7 @@ const operator = document.querySelector(".operator");
 const answer = document.querySelector(".answer");
 const equalButton = document.querySelector(".equal-button");
 const clearButton = document.querySelector("#clear-button");
+const decimalButton = document.querySelector('.decimal-button');
 
 const add = (num1, num2) => num1 + num2;
 const subtract = (num1, num2) => num1 - num2;
@@ -93,19 +94,22 @@ function inputOperator() {
   }
 }
 
+function inputDecimal() {
+  if (!operator.innerText) {
+    if (num1.innerText.includes('.')) return;
+    num1.innerText += this.innerText;
+  } else {
+    if (num2.innerText.includes('.')) return;
+    num2.innerText += this.innerText;
+  }
+}
+
 function clearScreen() {
   num1.innerText = "";
   operator.innerText = "";
   num2.innerText = "";
   answer.innerText = "";
 }
-
-numberButtons.forEach((button) => button.addEventListener("click", inputDigit));
-operatorButtons.forEach((button) =>
-  button.addEventListener("click", inputOperator)
-);
-equalButton.addEventListener("click", displayAnswer);
-clearButton.addEventListener("click", clearScreen);
 
 function decimalCount(num) {
   // Counts the amount of decimals in a number
@@ -123,3 +127,11 @@ function roundDecimal(num) {
   }
   return num;
 }
+
+numberButtons.forEach((button) => button.addEventListener("click", inputDigit));
+operatorButtons.forEach((button) =>
+  button.addEventListener("click", inputOperator)
+);
+equalButton.addEventListener("click", displayAnswer);
+clearButton.addEventListener("click", clearScreen);
+decimalButton.addEventListener('click', inputDecimal);

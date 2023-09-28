@@ -63,13 +63,20 @@ body {
     margin-left: 20px;
 }
 
-.number-button {
+.number-button, .decimal-button, .backspace-button {
     background-color: beige;
     padding: 8px 15px;
-    font-size: 40px;
     border-radius: 100%;
     margin: 8px 10px;
     border: 1px solid gray;
+}
+
+.number-button, .decimal-button {
+    font-size: 40px;
+}
+
+.backspace-button {
+    font-size: 22px;
 }
 
 .operator-buttons {

@@ -41,7 +41,7 @@ function displayAnswer() {
         answer.innerText = roundDecimal(result);
         break;
       }
-      case "x": {
+      case "*": {
         let result = operate(
           Number(num1.innerText),
           Number(num2.innerText),
@@ -65,7 +65,7 @@ function displayAnswer() {
   }
 }
 
-function inputDigit() {
+function inputNumber() {
   if (answer.innerText) {
     clearScreen();
     num1.innerText += this.innerText;
@@ -73,6 +73,17 @@ function inputDigit() {
     num1.innerText += this.innerText;
   } else {
     num2.innerText += this.innerText;
+  }
+}
+
+function inputNumberKey(e) {
+  if (answer.innerText) {
+    clearScreen();
+    num1.innerText += Number(e.key);
+  } else if (!operator.innerText) {
+    num1.innerText += Number(e.key);
+  } else {
+    num2.innerText += Number(e.key);
   }
 }
 
@@ -95,6 +106,25 @@ function inputOperator() {
   }
 }
 
+function inputOperatorKey(e) {
+  if (answer.innerText) {
+    let newAnswer = answer.innerText;
+    clearScreen();
+    num1.innerText = newAnswer;
+    operator.innerText = "";
+    operator.innerText = e.key;
+  } else if (!operator.innerText) {
+    operator.innerText += e.key;
+  } else if (operator.innerText && num2.innerText) {
+    displayAnswer();
+    num1.innerText = answer.innerText;
+    num2.innerText = "";
+    answer.innerText = "";
+    operator.innerText = "";
+    operator.innerText += e.key;
+  }
+}
+
 function inputDecimal() {
   if (!operator.innerText) {
     if (num1.innerText.includes(".")) return;
@@ -102,6 +132,41 @@ function inputDecimal() {
   } else {
     if (num2.innerText.includes(".")) return;
     num2.innerText += this.innerText;
+  }
+}
+
+function inputDecimalKey(e) {
+  if (!operator.innerText) {
+    if (num1.innerText.includes(".")) return;
+    num1.innerText += e.key;
+  } else {
+    if (num2.innerText.includes(".")) return;
+    num2.innerText += e.key;
+  }
+}
+
+function onKeydown(e) {
+  if (
+    e.key === "0" ||
+    e.key === "1" ||
+    e.key === "2" ||
+    e.key === "3" ||
+    e.key === "4" ||
+    e.key === "5" ||
+    e.key === "6" ||
+    e.key === "7" ||
+    e.key === "8" ||
+    e.key === "9"
+  ) {
+    inputNumberKey(e);
+  } else if (e.key === "+" || e.key === "-" || e.key === "*" || e.key === "/") {
+    inputOperatorKey(e);
+  } else if (e.key === ".") {
+    inputDecimalKey(e);
+  } else if (e.key === "Backspace") {
+    backspace();
+  } else if (e.key === "=") {
+    displayAnswer();
   }
 }
 
@@ -137,11 +202,14 @@ function roundDecimal(num) {
   return num;
 }
 
-numberButtons.forEach((button) => button.addEventListener("click", inputDigit));
+numberButtons.forEach((button) =>
+  button.addEventListener("click", inputNumber)
+);
 operatorButtons.forEach((button) =>
   button.addEventListener("click", inputOperator)
 );
 equalButton.addEventListener("click", displayAnswer);
 clearButton.addEventListener("click", clearScreen);
 decimalButton.addEventListener("click", inputDecimal);
-backspaceButton.addEventListener('click', backspace);
+backspaceButton.addEventListener("click", backspace);
+window.addEventListener("keydown", onKeydown);
